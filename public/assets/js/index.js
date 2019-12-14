@@ -4,6 +4,7 @@ var $saveNoteBtn = $(".save-note");
 var $newNoteBtn = $(".new-note");
 var $noteList = $(".list-container .list-group");
 
+
 // activeNote is used to keep track of the note in the textarea
 var activeNote = {};
 
@@ -53,8 +54,17 @@ var renderActiveNote = function() {
 var handleNoteSave = function() {
   var newNote = {
     title: $noteTitle.val(),
-    text: $noteText.val()
+    text: $noteText.val(),
+    id: generatedId()
   };
+
+  function generatedId(){
+    let min=1; 
+    let max=4000;  
+    let random = 
+    Math.floor(Math.random() * (+max - +min)) + +min; 
+    return random;
+  }
 
   saveNote(newNote).then(function(data) {
     getAndRenderNotes();
